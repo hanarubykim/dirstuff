@@ -15,7 +15,7 @@ void list(DIR *directory){
 
   while(currentFile = readdir(directory)){
     fileNum++;
-    printf("File %d: %s is \n", fileNum, currentFile->d_name);
+    printf("File %d: %s is ", fileNum, currentFile->d_name);
     if(currentFile->d_type == 4){
       printf("a directory.\n");
     }
