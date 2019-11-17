@@ -15,18 +15,18 @@ void list(DIR *directory){
 
   while(currentFile = readdir(directory)){
     fileNum++;
-    printf("File %d: %s is ", fileNum, currentFile->d_name);
-    // if(currentFile->d_type == 4){
-    //   printf("a directory.\n");
-    // }
-    // else{
-    //   printf("not a directory.\n");
-    //   stat(currentFile->d_name, &x);
-    //   totalSize += x.st_size;
-    // }
+    printf("File %d: %s is \n", fileNum, currentFile->d_name);
+    if(currentFile->d_type == 4){
+      printf("a directory.\n");
+    }
+    else{
+      printf("not a directory.\n");
+      stat(currentFile->d_name, &x);
+      totalSize += x.st_size;
+    }
   }
   int i = 0;
-  char * byteSize[] = {"B, KB, MB, GB"};
+  char * byteSize[] = {"B", "KB", "MB", "GB"};
   while(totalSize >= 1024){
     totalSize /= 1024;
     i++;
@@ -37,7 +37,7 @@ void list(DIR *directory){
 
 int main(){
   DIR *toad;
-  toad = opendir("dirstuff");
+  toad = opendir("./");
   if(toad == NULL){
     printf("Unable to read directory.");
     closedir(toad);
