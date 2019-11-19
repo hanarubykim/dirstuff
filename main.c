@@ -3,6 +3,7 @@
 #include <dirent.h>
 #include <sys/types.h>
 #include <sys/stat.h>
+#include <errno.h>
 
 // list all the files in the directory
 // specify which files are directories (if any)
@@ -48,7 +49,7 @@ int main(int argc, char *argv[]){
   DIR *toad;
   toad = opendir(dirname);
   if(toad == NULL){
-    printf("Oopsies! You've made a mistake, dude: %s.\nDirectory is invalid.\n", strerror(errno));
+    printf("Oopsies! You've made a mistake, dude: %d.\nDirectory is invalid.\n", strerror(errno));
     closedir(toad);
     return 0;
   }else{
