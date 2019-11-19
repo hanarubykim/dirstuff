@@ -44,7 +44,6 @@ int main(int argc, char *argv[]){
   }else{
     strcpy(dirname, argv[1]);
   }
-  printf("\nChecking... directory name is %s\n\n", dirname);
 
   DIR *toad;
   toad = opendir(dirname);
