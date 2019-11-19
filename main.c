@@ -35,12 +35,23 @@ void list(DIR *directory){
   printf("The size of all the regular files of this directory is %ld%s\n\n", totalSize, byteSize[i]);
 }
 
-int main(){
+int main(int argc, char *argv[]){
+  char dirname [1000];
+  if (argc <= 1){
+    printf("Enter directory to scan: ");
+    fgets(dirname, 1000, stdin);
+    dirname[strlen(dirname) - 1] = '\0';
+  }else{
+    strcpy(dirname, argv[1]);
+  }
+  printf("\nChecking... directory name is %s\n\n", dirname);
+
   DIR *toad;
-  toad = opendir("./");
+  toad = opendir(dirname);
   if(toad == NULL){
-    printf("Unable to read directory.");
+    printf("Oopsies! You've made a mistake, dude: %s.\nDirectory is invalid.\n", strerror(errno));
     closedir(toad);
+    return 0;
   }else{
     // list all the files in the directory
     // specify which files are directories (if any)
@@ -48,5 +59,5 @@ int main(){
     list(toad);
   }
   closedir(toad);
-// Have the program scan the current directory
+  return 0;
 }
